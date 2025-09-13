@@ -4,28 +4,43 @@
   <meta charset="UTF-8">
   <title>Thank You</title>
   <style>
+    /* Reset & layout */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; font-family:'Segoe UI',sans-serif; }
+
     body {
-      margin:0;
-      font-family:'Segoe UI',sans-serif;
-      background:linear-gradient(135deg,#84fab0,#8fd3f4);
-      text-align:center;
-      color:white;
-      overflow:hidden;
-      position:relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(135deg,#84fab0,#8fd3f4);
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    main {
+      flex: 1; /* takes full remaining height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* centers content vertically */
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
     }
 
     h1 {
-      font-size:60px;
-      margin-top:80px;
-      text-shadow:2px 2px 12px rgba(0,0,0,0.4);
+      font-size: 60px;
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.4);
       animation: pulse 2s infinite;
+      margin-bottom: 20px;
     }
 
     p {
-      font-size:24px;
-      margin:20px auto;
-      max-width:800px;
-      text-shadow:1px 1px 4px rgba(0,0,0,0.3);
+      font-size: 24px;
+      margin: 10px 0;
+      max-width: 800px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
     }
 
     a {
@@ -41,16 +56,14 @@
       transition:0.3s;
     }
 
-    a:hover {
-      background:#ff1a75;
-    }
+    a:hover { background:#ff1a75; }
 
     /* Heart animation */
     .heart {
-      position:absolute;
+      position: absolute;
       bottom:-50px;
       font-size:28px;
-      color:rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.8);
       animation: floatUp 6s linear infinite, beat 1s infinite alternate;
     }
 
@@ -73,44 +86,54 @@
     }
 
     footer {
-      position: absolute;
-      bottom: 10px;
       width: 100%;
+      padding: 20px 0;
+      background: rgba(0,0,0,0.2);
       font-size: 20px;
       text-align: center;
-      color: #fff;
       text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+    }
+
+    /* Responsive tweak */
+    @media (max-width: 600px) {
+      h1 { font-size: 40px; }
+      p { font-size: 18px; }
+      a { font-size: 18px; padding:12px 25px; }
     }
   </style>
 </head>
 <body>
-  <h1>Thank You My Love 💚</h1>
-  <p>Thanks for being in my life — you are my happiness, my hope, and my forever. ✨</p>
-  <p>Iiiii Loveeeeeeeeeeeeeeeeeee youuuuuu soooooo muchhhhh Vidhiieeee 🩷🌸🤍</p>
-  <p>Special line: “No matter what tomorrow brings, my best gift will always be you.”</p>
 
-  <a href="song.html">⬅️ Previous</a>
+  <main>
+    <h1>Thank You My Love 💚</h1>
+    <p>Thanks for being in my life — you are my happiness, my hope, and my forever. ✨</p>
+    <p>Iiiii Loveeeeeeeeeeeeeeeeeee youuuuuu soooooo muchhhhh Vidhiieeee 🩷🌸🤍</p>
+    <p>Special line: “No matter what tomorrow brings, my best gift will always be you.”</p>
 
-  <!-- Floating Hearts -->
-  <script>
-    const body = document.body;
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      const hearts = ['❤️','💖','💕','💘','💞','💗','💓'];
-      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.fontSize = (20 + Math.random()*30) + 'px';
-      heart.style.animationDuration = (4 + Math.random()*4) + 's';
-      heart.style.opacity = (0.5 + Math.random()*0.5);
-      body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
-    }
-    setInterval(createHeart, 200);
-  </script>
+    <a href="song.html">⬅️ Previous</a>
+
+    <!-- Floating Hearts -->
+    <script>
+      const body = document.querySelector('main');
+      function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        const hearts = ['❤️','💖','💕','💘','💞','💗','💓'];
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (20 + Math.random()*30) + 'px';
+        heart.style.animationDuration = (4 + Math.random()*4) + 's';
+        heart.style.opacity = (0.5 + Math.random()*0.5);
+        body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+      }
+      setInterval(createHeart, 200);
+    </script>
+  </main>
 
   <footer>
     LOTS OF LOVE FROM VAIBHAV PATEL 🩺
   </footer>
+
 </body>
 </html>
