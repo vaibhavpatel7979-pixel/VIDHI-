@@ -21,82 +21,101 @@
       font-size: 70px;
       margin: 20px;
       text-shadow: 3px 3px 10px rgba(0,0,0,0.6);
-      color: #fff;
     }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+    .slideshow-container {
+      position: relative;
       max-width: 90%;
-    }
-    .gallery img {
-      max-width: 500px;   /* bada image */
-      max-height: 80vh;
+      height: 70vh;
+      margin: auto;
+      overflow: hidden;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      animation: zoomIn 2s ease;
-      transition: transform 0.3s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .gallery img:hover {
-      transform: scale(1.05) rotate(1deg);
+    .slides {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      animation: fade 1.5s;
     }
-    @keyframes zoomIn {
-      from { transform: scale(0.7); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    @keyframes fade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
     }
+    .btn {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 30px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background: rgba(0,0,0,0.4);
+      transition: 0.3s;
+    }
+    .btn:hover { background: rgba(0,0,0,0.8); }
+    .prev { left: 0; border-radius: 3px 0 0 3px; }
+    .next { right: 0; border-radius: 3px 0 0 3px; }
     a {
       margin-top: 40px;
-      padding: 20px 50px;
-      font-size: 26px;
+      padding: 15px 40px;
+      font-size: 24px;
       background: #ff4da6;
       color: white;
       text-decoration: none;
       border-radius: 50px;
       box-shadow: 0 0 25px rgba(255,77,166,0.9);
-      transition: 0.3s;
     }
-    a:hover { background: #e60073; transform: scale(1.1); }
-
-    /* Floating glowing hearts */
-    .float {
-      position: absolute;
-      bottom: -60px;
-      font-size: 30px;
-      color: rgba(255,255,255,0.9);
-      animation: floatUp 12s ease-in infinite;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(0.8); opacity: 1; }
-      50% { transform: translateY(-60vh) scale(1.2); opacity: 0.8; }
-      100% { transform: translateY(-120vh) scale(0.6); opacity: 0; }
-    }
+    a:hover { background: #e60073; }
   </style>
 </head>
 <body>
   <h1>💖 Our Beautiful Memories 💖</h1>
 
-  <div class="gallery">
-    <img src="images/photo1.jpg" alt="Photo 1">
-    <img src="images/photo2.jpg" alt="Photo 2">
-    <img src="images/photo3.jpg" alt="Photo 3">
-    <img src="images/photo4.jpg" alt="Photo 4">
-    <img src="images/photo5.jpg" alt="Photo 5">
+  <div class="slideshow-container">
+    <img class="slides" src="images/photo1.jpg" alt="Photo 1">
+    <img class="slides" src="images/photo2.jpg" alt="Photo 2">
+    <img class="slides" src="images/photo3.jpg" alt="Photo 3">
+    <img class="slides" src="images/photo4.jpg" alt="Photo 4">
+    <img class="slides" src="images/photo5.jpg" alt="Photo 5">
+
+    <!-- Next and previous buttons -->
+    <a class="btn prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="btn next" onclick="plusSlides(1)">&#10095;</a>
   </div>
 
-  <p style="font-size:28px;max-width:900px;margin:30px;color:white;">
+  <p style="font-size:28px;max-width:900px;margin:30px;">
     “Every picture tells a story… and every story leads back to you.” 🌸
   </p>
 
   <a href="index.html">⬅️ Previous</a>
   <a href="pickup.html">Next ➡️</a>
 
-  <!-- Floating glowing hearts -->
-  <div class="float" style="left:15%;animation-delay:0s;">💖</div>
-  <div class="float" style="left:35%;animation-delay:3s;">💕</div>
-  <div class="float" style="left:55%;animation-delay:6s;">❤️</div>
-  <div class="float" style="left:75%;animation-delay:9s;">💞</div>
-</body>
-</html>  <div class="heart" style="left:90%; animation-delay:5s;">💖</div>
+  <script>
+    let slideIndex = 0;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("slides");
+      if (n >= slides.length) { slideIndex = 0; }
+      if (n < 0) { slideIndex = slides.length - 1; }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex].style.display = "block";
+    }
+
+    // Auto slide every 4 seconds
+    setInterval(() => { plusSlides(1); }, 4000);
+  </script>
 </body>
 </html>
