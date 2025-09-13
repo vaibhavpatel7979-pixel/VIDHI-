@@ -4,13 +4,83 @@
   <meta charset="UTF-8">
   <title>Thank You</title>
   <style>
-    body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#84fab0,#8fd3f4);text-align:center;color:white;overflow:hidden;}
-    h1{font-size:60px;margin-top:100px;text-shadow:2px 2px 8px rgba(0,0,0,0.4);}
-    p{font-size:24px;margin:20px auto;max-width:800px;}
-    a{display:inline-block;margin:20px;padding:15px 30px;font-size:22px;background:#00b894;color:white;text-decoration:none;border-radius:30px;box-shadow:0 0 20px rgba(0,184,148,0.8);}
-    a:hover{background:#008060;}
-    .heart{position:absolute;bottom:-50px;font-size:28px;color:rgba(255,255,255,0.8);animation:floatUp 8s linear infinite;}
-    @keyframes floatUp{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(-120vh);opacity:0;}}
+    body {
+      margin:0;
+      font-family:'Segoe UI',sans-serif;
+      background:linear-gradient(135deg,#84fab0,#8fd3f4);
+      text-align:center;
+      color:white;
+      overflow:hidden;
+      position:relative;
+    }
+
+    h1 {
+      font-size:60px;
+      margin-top:80px;
+      text-shadow:2px 2px 12px rgba(0,0,0,0.4);
+      animation: pulse 2s infinite;
+    }
+
+    p {
+      font-size:24px;
+      margin:20px auto;
+      max-width:800px;
+      text-shadow:1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    a {
+      display:inline-block;
+      margin:20px;
+      padding:15px 30px;
+      font-size:22px;
+      background:#ff4d94;
+      color:white;
+      text-decoration:none;
+      border-radius:30px;
+      box-shadow:0 0 20px rgba(255,77,148,0.8);
+      transition:0.3s;
+    }
+
+    a:hover {
+      background:#ff1a75;
+    }
+
+    /* Heart animation */
+    .heart {
+      position:absolute;
+      bottom:-50px;
+      font-size:28px;
+      color:rgba(255,255,255,0.8);
+      animation: floatUp 6s linear infinite, beat 1s infinite alternate;
+    }
+
+    @keyframes floatUp {
+      0%{transform:translateY(0) scale(1);}
+      50%{opacity:1;}
+      100%{transform:translateY(-120vh) scale(1.2); opacity:0;}
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes beat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      font-size: 20px;
+      text-align: center;
+      color: #fff;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+    }
   </style>
 </head>
 <body>
@@ -21,8 +91,26 @@
 
   <a href="song.html">⬅️ Previous</a>
 
-  <div class="heart" style="left:20%;animation-delay:0s;">❤️</div>
-  <div class="heart" style="left:40%;animation-delay:3s;">💕</div>
-  <div class="heart" style="left:70%;animation-delay:6s;">💖</div>
+  <!-- Floating Hearts -->
+  <script>
+    const body = document.body;
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      const hearts = ['❤️','💖','💕','💘','💞','💗','💓'];
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (20 + Math.random()*30) + 'px';
+      heart.style.animationDuration = (4 + Math.random()*4) + 's';
+      heart.style.opacity = (0.5 + Math.random()*0.5);
+      body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHeart, 200);
+  </script>
+
+  <footer>
+    LOTS OF LOVE FROM VAIBHAV PATEL 🩺
+  </footer>
 </body>
 </html>
