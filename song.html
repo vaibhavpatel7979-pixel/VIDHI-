@@ -4,20 +4,32 @@
   <meta charset="UTF-8">
   <title>A Song for You</title>
   <style>
-    body { font-family: Arial; text-align: center; background: #f9e6ff; }
-    audio { margin-top: 40px; }
-    a { display: inline-block; margin: 20px; padding: 10px 20px; background: #cc33ff; color: white; text-decoration: none; border-radius: 10px; }
+    body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#a18cd1,#fbc2eb);text-align:center;color:white;overflow:hidden;}
+    h1{font-size:55px;margin-top:100px;text-shadow:2px 2px 8px rgba(0,0,0,0.4);}
+    p{font-size:22px;margin:20px auto;max-width:800px;}
+    audio{margin:40px;}
+    a{display:inline-block;margin:20px;padding:15px 30px;font-size:22px;background:#9933ff;color:white;text-decoration:none;border-radius:30px;box-shadow:0 0 20px rgba(153,51,255,0.8);}
+    a:hover{background:#6610cc;}
+    .heart{position:absolute;bottom:-50px;font-size:28px;color:rgba(255,255,255,0.8);animation:floatUp 10s linear infinite;}
+    @keyframes floatUp{0%{transform:translateY(0);opacity:1;}100%{transform:translateY(-120vh);opacity:0;}}
   </style>
 </head>
 <body>
   <h1>🎶 A Song Just for You 🎶</h1>
-  <p>Whenever I listen to this song, I think of you 💕</p>
+  <p>Whenever I listen to this melody, I feel closer to you… as if your soul is singing to mine. 💕</p>
+  <p>Special line: *“This song isn’t just music — it’s every heartbeat I have for you.”*</p>
+
   <audio controls>
     <source src="song.mp3" type="audio/mpeg">
     Your browser does not support audio.
   </audio>
+
   <br>
   <a href="pickup.html">⬅️ Previous</a>
   <a href="thanks.html">Next ➡️</a>
+
+  <div class="heart" style="left:25%;animation-delay:2s;">❤️</div>
+  <div class="heart" style="left:55%;animation-delay:5s;">💕</div>
+  <div class="heart" style="left:80%;animation-delay:7s;">💖</div>
 </body>
 </html>
